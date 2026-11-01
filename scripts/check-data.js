@@ -19,4 +19,7 @@ assert.strictEqual(byId.wayfinding.fields.length, 5, '5 fields');
 assert.strictEqual(byId.wayfinding.now.lines.length, 3, 'now has 3 lines');
 assert(!JSON.stringify(T).includes('好好'), 'client name must not appear');
 assert(!JSON.stringify(T).includes('T-Pharma'), 'project code name must not appear');
+for (const s of byId.reading.sides) for (const b of s.books) {
+  assert(fs.existsSync(__dirname + '/../' + b.cover), `missing cover file ${b.cover}`);
+}
 console.log('data.js OK');
