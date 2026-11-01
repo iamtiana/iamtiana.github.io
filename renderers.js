@@ -18,21 +18,37 @@ window.RENDERERS.music = (tape, el) => {
   el.querySelectorAll('iframe').forEach(f => f.addEventListener('error', () => f.remove()));
 };
 
-// 02 READING — two sides, flip button, cover grid.
+// 02 READING — two sides, flip button, cover grid; click a cover to open it in the "now open" panel above the grid.
 window.RENDERERS.reading = (tape, el) => {
   let side = 0;
-  const draw = () => {
+  const picked = tape.sides.map(() => 0); // selected book index per side
+  const draw = (scrollToDetail) => {
     const s = tape.sides[side];
+    const b = s.books[picked[side]];
     el.innerHTML = `
       <div class="side-bar">
         <span class="label">${esc(s.name)}</span>
         <button class="flip" type="button">flip to side ${side === 0 ? 'B' : 'A'} ↻</button>
       </div>
-      <ul class="shelf">${s.books.map(b => `
-        <li><img src="${esc(b.cover)}" alt="" loading="lazy"><span>${esc(b.title)}</span></li>`).join('')}</ul>`;
-    el.querySelector('.flip').addEventListener('click', () => { side = 1 - side; draw(); });
+      <div class="book-detail">
+        <img src="${esc(b.cover)}" alt="">
+        <div class="book-text">
+          <span class="label">now open · ${String(picked[side] + 1).padStart(2, '0')} / ${String(s.books.length).padStart(2, '0')}</span>
+          <h3>${esc(b.title)}</h3>
+          ${b.author ? `<p class="book-author">${esc(b.author)}</p>` : ''}
+          ${b.blurb ? `<p class="book-blurb">${esc(b.blurb)}</p>` : ''}
+        </div>
+      </div>
+      <ul class="shelf">${s.books.map((bk, i) => `
+        <li class="${i === picked[side] ? 'is-selected' : ''}" data-i="${i}"><img src="${esc(bk.cover)}" alt="" loading="lazy"><span>${esc(bk.title)}</span></li>`).join('')}</ul>`;
+    el.querySelector('.flip').addEventListener('click', () => { side = 1 - side; draw(false); });
+    el.querySelectorAll('.shelf li').forEach(li => li.addEventListener('click', () => {
+      picked[side] = Number(li.dataset.i);
+      draw(true);
+    }));
+    if (scrollToDetail) el.querySelector('.book-detail').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
-  draw();
+  draw(false);
 };
 
 // 03 SCREEN — poster wall; each poster links to its source page. Items without a poster fall back to a text row.

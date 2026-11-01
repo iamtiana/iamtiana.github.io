@@ -7,7 +7,7 @@
 只要改 `data.js` 這一個檔案。
 
 - 歌手：改 `artists` 裡的名字和 Spotify ID（打開 open.spotify.com 的歌手頁，網址最後那串 22 碼）。
-- 書：封面圖放進 `images/books/`，然後在 `sides` 裡加一行 `{ title: '書名', cover: 'images/books/檔名.jpg' }`。
+- 書：封面圖放進 `images/books/`，然後在 `sides` 裡加一行 `{ title: '書名', author: '作者', blurb: '兩句話簡介', cover: 'images/books/檔名.jpg' }`。`author` 和 `blurb` 不填也可以，就只會顯示書名。
 - 影集 / 電影：`items` 裡加一行 `{ title: '片名', poster: '海報圖網址', link: '點了連去哪' }`。影集的海報可以用 `python3 scripts/find-posters.py` 查（改檔案裡的片名清單），電影可以用 Wikipedia 頁面上的海報圖網址。只給 `title` 不給 `poster` 也可以，會變成純文字一行。
 - Way Finding：`fields` 改領域，`now.lines` 改現在在做的事，`photo` 填圖片路徑就會顯示照片。
 
