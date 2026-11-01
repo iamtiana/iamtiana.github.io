@@ -56,14 +56,16 @@ window.TAPES = [
     label: 'Screen',
     title: 'Rom-com Forever',
     subtitle: 'genre: rom-com',
+    // poster：海報圖網址（影集可用 python3 scripts/find-posters.py 查）；link：點海報連去哪
     items: [
-      '10 Things I Hate About You',
-      'Love and Other Drugs',
-      'Off Campus',
-      'Friends',
-      'The Big Bang Theory',
-      'Suits',
+      { title: '10 Things I Hate About You', poster: 'https://upload.wikimedia.org/wikipedia/en/9/95/10_Things_I_Hate_About_You_film.jpg', link: 'https://en.wikipedia.org/wiki/10_Things_I_Hate_About_You' },
+      { title: 'Love and Other Drugs',       poster: 'https://upload.wikimedia.org/wikipedia/en/4/43/Love_%26_Other_Drugs_Poster.jpg',   link: 'https://en.wikipedia.org/wiki/Love_%26_Other_Drugs' },
+      { title: 'Off Campus',                 poster: 'https://static.tvmaze.com/uploads/images/medium_portrait/624/1562439.jpg',         link: 'https://www.tvmaze.com/shows/79932/off-campus' },
+      { title: 'Friends',                    poster: 'https://static.tvmaze.com/uploads/images/medium_portrait/41/104565.jpg',           link: 'https://www.tvmaze.com/shows/431/friends' },
+      { title: 'The Big Bang Theory',        poster: 'https://static.tvmaze.com/uploads/images/medium_portrait/173/433868.jpg',          link: 'https://www.tvmaze.com/shows/66/the-big-bang-theory' },
+      { title: 'Suits',                      poster: 'https://static.tvmaze.com/uploads/images/medium_portrait/393/983536.jpg',          link: 'https://www.tvmaze.com/shows/172/suits' },
     ],
+    credit: 'posters via TVmaze & Wikipedia',
   },
   {
     id: 'wayfinding',
@@ -81,7 +83,7 @@ window.TAPES = [
       label: 'now building',
       lines: [
         '正在幫連鎖藥局做一套新系統。',
-        '先去藥局站在櫃台後面，看藥師怎麼叫藥、怎麼盤點、怎麼在 LINE 群組裡撈公告，把現場流程搞懂。',
+        '先去藥局蹲點：前台看藥師怎麼叫藥、盤點、在 LINE 群組裡撈公告；後台看行政、採購、付款、員工管理怎麼跑。把一間藥局從頭到尾怎麼運作搞懂。',
         '然後把需求整理出來，跟 AI 一起 vibe coding，把系統做出來。',
       ],
     },

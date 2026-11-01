@@ -15,6 +15,11 @@ assert.strictEqual(byId.reading.sides[0].books.length, 12, 'side A has 12 books'
 assert.strictEqual(byId.reading.sides[1].books.length, 8, 'side B has 8 books');
 for (const s of byId.reading.sides) for (const b of s.books) assert(b.title && /^images\/books\/.+\.jpg$/.test(b.cover), `bad book ${JSON.stringify(b)}`);
 assert.strictEqual(byId.screen.items.length, 6, '6 screen items');
+for (const it of byId.screen.items) {
+  if (typeof it === 'string') continue;
+  assert(it.title, `screen item needs a title: ${JSON.stringify(it)}`);
+  if (it.poster) assert(/^https:\/\//.test(it.poster), `poster must be an https URL: ${it.title}`);
+}
 assert.strictEqual(byId.wayfinding.fields.length, 5, '5 fields');
 assert.strictEqual(byId.wayfinding.now.lines.length, 3, 'now has 3 lines');
 assert(!JSON.stringify(T).includes('好好'), 'client name must not appear');

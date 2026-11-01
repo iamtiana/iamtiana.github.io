@@ -35,10 +35,17 @@ window.RENDERERS.reading = (tape, el) => {
   draw();
 };
 
-// 03 SCREEN — plain numbered list.
+// 03 SCREEN — poster wall; each poster links to its source page. Items without a poster fall back to a text row.
 window.RENDERERS.screen = (tape, el) => {
-  el.innerHTML = `<ol class="list">${tape.items.map((t, i) => `
-    <li><span class="n">${String(i + 1).padStart(2, '0')}</span><span>${esc(t)}</span></li>`).join('')}</ol>`;
+  const items = tape.items.map(t => typeof t === 'string' ? { title: t } : t);
+  const withPoster = items.filter(t => t.poster);
+  const textOnly = items.filter(t => !t.poster);
+  el.innerHTML = `
+    ${withPoster.length ? `<ul class="shelf posters">${withPoster.map(t => `
+      <li><a href="${esc(t.link || '#')}" target="_blank" rel="noopener"><img src="${esc(t.poster)}" alt="" loading="lazy"></a><span>${esc(t.title)}</span></li>`).join('')}</ul>` : ''}
+    ${textOnly.length ? `<ol class="list">${textOnly.map((t, i) => `
+      <li><span class="n">${String(i + 1).padStart(2, '0')}</span><span>${esc(t.title)}</span></li>`).join('')}</ol>` : ''}
+    ${tape.credit ? `<p class="label credit">${esc(tape.credit)}</p>` : ''}`;
 };
 
 // 04 WAY FINDING — five fields, then the "now building" block.
