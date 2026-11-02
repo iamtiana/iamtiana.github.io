@@ -157,6 +157,10 @@ window.TAPES = [
       { name: 'clubbing',   en: 'clubbing',    icon: 'disco',      bg: '#2b2722' },
       { name: 'delicacies', en: 'delicacies',  icon: 'food',       bg: '#e8826f' },
       { name: 'volleyball', en: 'volleyball',  icon: 'volleyball', bg: '#a8c8e8' },
+      { name: '甜點',       en: 'desserts',    icon: 'dessert',    bg: '#f3b7c3' },
+      { name: '鮮奶茶',     en: 'fresh milk tea', icon: 'milkTea', bg: '#b78a5c' },
+      { name: '西西里咖啡', en: 'sicilian coffee', icon: 'sicilianCoffee', bg: '#2b2722' },
+      { name: '抹茶燕麥奶拿鐵', en: 'matcha oat latte', icon: 'matchaLatte', bg: '#dfe6cf' },
     ],
   },
 ];
