@@ -1,4 +1,6 @@
-# Tiana's Tapes — 個人網站設計 spec
+# Tiana's Library — 個人網站設計 spec
+
+> **2026-11-02 改版**：主隱喻從「一箱卡帶」改成「五本書」（Faber 版石黑一雄封面風格：一本一色、中間色塊＋幾何圖、書名粗體在下、不寫作者）。首頁五本封面平放一排，點一本翻開內頁；內頁結構與下文相同。新增第五本 **My Likes**：12 格圖示（海、大耳狗、藍色、咖啡廳、貓、美劇、草莓、散步、音樂、clubbing、delicacies、volleyball），圖示下一行英文小字，中文名放 tooltip。封面與圖示都是 inline SVG，在 `covers.js`；每本的配色在 `data.js` 的 `cover` 欄位。站名改 Tiana's Library。下文的「卡帶」「J-card」請讀成「書」「內頁」。
 
 日期：2026-11-01
 網址：https://iamtiana.github.io（GitHub Pages，repo `iamtiana/iamtiana.github.io`）

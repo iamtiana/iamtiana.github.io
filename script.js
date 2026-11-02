@@ -1,21 +1,31 @@
-// Renders the tape box and J-cards from window.TAPES; handles open/close.
+// Renders the bookshelf (one cover per entry in window.TAPES) and the J-cards; handles open/close.
 (function () {
   const tapes = window.TAPES;
-  const box = document.querySelector('.box');
+  const site = window.SITE || { name: "Tiana's Library" };
+  const shelf = document.querySelector('.books');
   const cards = document.querySelector('.cards');
+  const nameEl = document.querySelector('.box-label .name');
   const count = document.querySelector('.box-label .count');
   window.RENDERERS = window.RENDERERS || {};
 
   const pad = n => String(n).padStart(2, '0');
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
   tapes.forEach((tape, i) => {
+    const c = tape.cover || {};
+    const mark = (window.COVER_MARKS && window.COVER_MARKS[c.mark]) ? window.COVER_MARKS[c.mark](c) : '';
     const btn = document.createElement('button');
-    btn.className = 'tape';
+    btn.className = 'book';
     btn.dataset.id = tape.id;
-    btn.setAttribute('aria-label', `Open ${tape.label}`);
-    btn.innerHTML = `<span class="spine">${tape.label}</span>`;
+    btn.style.background = c.bg || '#2b2722';
+    btn.style.color = c.ink || '#f6efe3';
+    btn.setAttribute('aria-label', `Open ${tape.title}`);
+    btn.innerHTML = `
+      <span class="k"><span>${esc(tape.label)}</span><span>${pad(i + 1)}</span></span>
+      <span class="mark">${mark}</span>
+      <span class="t">${esc(tape.title)}</span>`;
     btn.addEventListener('click', () => open(tape.id));
-    box.appendChild(btn);
+    shelf.appendChild(btn);
 
     const card = document.createElement('section');
     card.className = 'jcard';
@@ -24,7 +34,7 @@
     card.innerHTML = `
       <button class="jcard-close" type="button">close</button>
       <header class="jcard-head">
-        <div class="label"><span>Tiana's Tapes</span><span>${pad(i + 1)} / ${pad(tapes.length)}</span></div>
+        <div class="label"><span>${esc(site.name)}</span><span>${pad(i + 1)} / ${pad(tapes.length)}</span></div>
         <h2></h2>
         <p class="label subtitle"></p>
       </header>
@@ -37,12 +47,13 @@
     cards.appendChild(card);
   });
 
-  count.textContent = `${tapes.length} tapes`;
+  nameEl.textContent = site.name;
+  count.textContent = `${tapes.length} books`;
 
   function open(id) {
     close();
     document.body.dataset.open = id;
-    box.querySelector(`.tape[data-id="${id}"]`).dataset.active = '';
+    shelf.querySelector(`.book[data-id="${id}"]`).dataset.active = '';
     const card = cards.querySelector(`.jcard[data-id="${id}"]`);
     card.hidden = false;
     requestAnimationFrame(() => card.classList.add('is-open'));
@@ -53,7 +64,7 @@
     const id = document.body.dataset.open;
     if (!id) return;
     delete document.body.dataset.open;
-    const t = box.querySelector('.tape[data-active]');
+    const t = shelf.querySelector('.book[data-active]');
     if (t) delete t.dataset.active;
     const card = cards.querySelector(`.jcard[data-id="${id}"]`);
     card.classList.remove('is-open');

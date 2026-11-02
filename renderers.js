@@ -64,6 +64,15 @@ window.RENDERERS.screen = (tape, el) => {
     ${tape.credit ? `<p class="label credit">${esc(tape.credit)}</p>` : ''}`;
 };
 
+// 05 LIKES — a grid of icon tiles with a small English caption; the Chinese name is the tooltip.
+window.RENDERERS.likes = (tape, el) => {
+  el.innerHTML = `<ul class="likes">${tape.items.map(it => `
+    <li title="${esc(it.name)}">
+      <div class="tile" style="background:${esc(it.bg)}">${window.LIKE_ICONS[it.icon] || ''}</div>
+      <span class="label">${esc(it.en)}</span>
+    </li>`).join('')}</ul>`;
+};
+
 // 04 WAY FINDING — five fields, then the "now building" block.
 window.RENDERERS.wayfinding = (tape, el) => {
   el.innerHTML = `
