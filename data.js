@@ -33,6 +33,7 @@ window.TAPES = [
     tracks: [
       { name: 'Housewife',     artist: 'Tate McRae', spotifyId: '2sFepQNyl1WjpROruP8bJ0' },
       { name: 'Nicole Kidman', artist: 'ADÉLA',      spotifyId: '4fBnFBSVjHfDv8dqXxKw05' },
+      { name: 'There You Are', artist: 'ZAYN',       spotifyId: '5y4XJ9UFS5eOdoYPF5pSAE' },
     ],
   },
   {
