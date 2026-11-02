@@ -30,7 +30,10 @@ window.TAPES = [
     ],
     // 喜歡的歌：Spotify 歌曲 ID（打開 open.spotify.com 的歌曲頁，網址 /track/ 後面那串 22 碼）
     // 例：{ name: 'Espresso', artist: 'Sabrina Carpenter', spotifyId: '2qSkIjg1o9h3YT9RAgYN75' }
-    tracks: [],
+    tracks: [
+      { name: 'Housewife',     artist: 'Tate McRae', spotifyId: '2sFepQNyl1WjpROruP8bJ0' },
+      { name: 'Nicole Kidman', artist: 'ADÉLA',      spotifyId: '4fBnFBSVjHfDv8dqXxKw05' },
+    ],
   },
   {
     id: 'reading',
