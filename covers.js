@@ -42,7 +42,12 @@ const P = '#f6efe3', K = '#2b2722', N = '#2b3a4f';
 window.LIKE_ICONS = {
   sea: `<svg viewBox="0 0 40 40"><path d="M2 16 Q7 10 12 16 T22 16 T32 16 T42 16" fill="none" stroke="${P}" stroke-width="3" stroke-linecap="round"/><path d="M2 26 Q7 20 12 26 T22 26 T32 26 T42 26" fill="none" stroke="${P}" stroke-width="3" stroke-linecap="round"/></svg>`,
   longEarDog: `<svg viewBox="0 0 40 40"><ellipse cx="7" cy="22" rx="5" ry="12" fill="#fff" transform="rotate(14 7 22)"/><ellipse cx="33" cy="22" rx="5" ry="12" fill="#fff" transform="rotate(-14 33 22)"/><circle cx="20" cy="20" r="13" fill="#fff"/><circle cx="15" cy="19" r="1.6" fill="${K}"/><circle cx="25" cy="19" r="1.6" fill="${K}"/><path d="M17 25 q3 2.5 6 0" fill="none" stroke="${K}" stroke-width="1.4" stroke-linecap="round"/><circle cx="12.5" cy="23.5" r="1.6" fill="#f3b7c3"/><circle cx="27.5" cy="23.5" r="1.6" fill="#f3b7c3"/></svg>`,
-  blue: `<svg viewBox="0 0 40 40"><rect x="6" y="6" width="28" height="28" rx="4" fill="#2f6fb0"/></svg>`,
+  // nine Pantone-ish blues, sky → navy, laid out like a swatch book
+  blue: `<svg viewBox="0 0 40 40">${[
+      '#a7d8f0', '#7fb3d5', '#5b9bd5',
+      '#3d8fd1', '#2f6fb0', '#0f4c81',
+      '#1f3a93', '#223a5e', '#14213d',
+    ].map((c, i) => `<rect x="${4 + (i % 3) * 11}" y="${4 + Math.floor(i / 3) * 11}" width="10" height="10" rx="1.5" fill="${c}"/>`).join('')}</svg>`,
   cafe: `<svg viewBox="0 0 40 40"><path d="M8 16 h20 v9 a8 8 0 0 1 -8 8 h-4 a8 8 0 0 1 -8 -8z" fill="${P}"/><path d="M28 18 h3 a4 4 0 0 1 0 8 h-3" fill="none" stroke="${P}" stroke-width="2.5"/><path d="M14 12 q1 -3 0 -5 M20 12 q1 -3 0 -5" fill="none" stroke="${P}" stroke-width="2" stroke-linecap="round"/></svg>`,
   cat: `<svg viewBox="0 0 40 40"><path d="M9 30 V13 l6 5 h10 l6 -5 v17z" fill="#ecbc5a"/><circle cx="16" cy="22" r="1.6" fill="${N}"/><circle cx="24" cy="22" r="1.6" fill="${N}"/><path d="M18.5 26 h3 l-1.5 1.5z" fill="${N}"/></svg>`,
   tv: `<svg viewBox="0 0 40 40"><rect x="5" y="9" width="30" height="20" rx="2" fill="${K}"/><path d="M17 14 l9 5 -9 5z" fill="#ecbc5a"/><rect x="14" y="31" width="12" height="2.5" fill="${K}"/></svg>`,
