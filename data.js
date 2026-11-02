@@ -28,6 +28,9 @@ window.TAPES = [
       { name: 'Post Malone',      spotifyId: '5SZMHXuqHpNTfKC4v9WJL2' },
       { name: 'Sabrina Carpenter', spotifyId: '74KM79TiuVKeVCqs8QtB0B' },
     ],
+    // 喜歡的歌：Spotify 歌曲 ID（打開 open.spotify.com 的歌曲頁，網址 /track/ 後面那串 22 碼）
+    // 例：{ name: 'Espresso', artist: 'Sabrina Carpenter', spotifyId: '2qSkIjg1o9h3YT9RAgYN75' }
+    tracks: [],
   },
   {
     id: 'reading',

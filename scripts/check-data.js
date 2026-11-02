@@ -27,6 +27,7 @@ assert(byId.likes.items.length >= 1, 'likes needs items');
 for (const it of byId.likes.items) assert(it.name && it.en && it.icon && it.bg, `bad like ${JSON.stringify(it)}`);
 assert(byId.music.artists.length >= 1, 'at least 1 artist');
 for (const a of byId.music.artists) assert(/^[A-Za-z0-9]{22}$/.test(a.spotifyId), `bad spotifyId for ${a.name}`);
+for (const t of (byId.music.tracks || [])) assert(t.name && t.artist && /^[A-Za-z0-9]{22}$/.test(t.spotifyId), `bad track ${JSON.stringify(t)}`);
 assert.strictEqual(byId.reading.sides.length, 2, '2 sides');
 assert.strictEqual(byId.reading.sides[0].books.length, 12, 'side A has 12 books');
 assert.strictEqual(byId.reading.sides[1].books.length, 8, 'side B has 8 books');

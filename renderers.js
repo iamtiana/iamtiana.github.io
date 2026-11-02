@@ -3,19 +3,32 @@ window.RENDERERS = window.RENDERERS || {};
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-// 01 MUSIC — Spotify public artist embeds; falls back to a plain list if an iframe fails to load.
+// 01 MUSIC — two tabs: Artists (Spotify artist embeds) and Songs (Spotify track embeds).
+// Falls back to a plain name row if an iframe fails to load.
 window.RENDERERS.music = (tape, el) => {
-  el.innerHTML = `<ol class="artists">${tape.artists.map((a, i) => `
-    <li class="artist">
-      <span class="n">${String(i + 1).padStart(2, '0')}</span>
-      <div class="artist-embed">
-        <iframe title="${esc(a.name)} on Spotify" loading="lazy"
-          src="https://open.spotify.com/embed/artist/${esc(a.spotifyId)}?utm_source=generator&theme=0"
-          width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-        <span class="artist-name">${esc(a.name)}</span>
+  const tracks = tape.tracks || [];
+  let tab = 'artists';
+  const embed = (kind, id, title, fallback) => `
+    <div class="artist-embed">
+      <iframe title="${esc(title)} on Spotify" loading="lazy"
+        src="https://open.spotify.com/embed/${kind}/${esc(id)}?utm_source=generator&theme=0"
+        width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      <span class="artist-name">${esc(fallback)}</span>
+    </div>`;
+  const draw = () => {
+    const list = tab === 'artists'
+      ? tape.artists.map((a, i) => `<li class="artist"><span class="n">${String(i + 1).padStart(2, '0')}</span>${embed('artist', a.spotifyId, a.name, a.name)}</li>`)
+      : tracks.map((t, i) => `<li class="artist"><span class="n">${String(i + 1).padStart(2, '0')}</span>${embed('track', t.spotifyId, `${t.name} · ${t.artist}`, `${t.name} · ${t.artist}`)}</li>`);
+    el.innerHTML = `
+      <div class="tabs" role="tablist">
+        <button class="tab ${tab === 'artists' ? 'is-on' : ''}" data-tab="artists" role="tab">Artists <span class="n">${tape.artists.length}</span></button>
+        <button class="tab ${tab === 'songs' ? 'is-on' : ''}" data-tab="songs" role="tab">Songs <span class="n">${tracks.length}</span></button>
       </div>
-    </li>`).join('')}</ol>`;
-  el.querySelectorAll('iframe').forEach(f => f.addEventListener('error', () => f.remove()));
+      ${list.length ? `<ol class="artists">${list.join('')}</ol>` : `<p class="label empty">songs · coming soon</p>`}`;
+    el.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => { tab = b.dataset.tab; draw(); }));
+    el.querySelectorAll('iframe').forEach(f => f.addEventListener('error', () => f.remove()));
+  };
+  draw();
 };
 
 // 02 READING — two sides, flip button, cover grid; click a cover to open it in the "now open" panel above the grid.
