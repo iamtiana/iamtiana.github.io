@@ -32,13 +32,17 @@
     card.dataset.id = tape.id;
     card.hidden = true;
     card.innerHTML = `
-      <button class="jcard-close" type="button">close</button>
-      <header class="jcard-head">
-        <div class="label"><span>${esc(site.name)}</span><span>${pad(i + 1)} / ${pad(tapes.length)}</span></div>
-        <h2></h2>
-        <p class="label subtitle"></p>
-      </header>
-      <div class="jcard-body"></div>`;
+      <button class="jcard-close" type="button" aria-label="Close">
+        <svg viewBox="0 0 16 16" width="14" height="14"><path d="M3 3 L13 13 M13 3 L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <div class="jcard-scroll">
+        <header class="jcard-head">
+          <div class="label"><span>${esc(site.name)}</span><span>${pad(i + 1)} / ${pad(tapes.length)}</span></div>
+          <h2></h2>
+          <p class="label subtitle"></p>
+        </header>
+        <div class="jcard-body"></div>
+      </div>`;
     card.querySelector('h2').textContent = tape.title;
     card.querySelector('.subtitle').textContent = tape.subtitle || '';
     card.querySelector('.jcard-close').addEventListener('click', close);
