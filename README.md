@@ -10,7 +10,7 @@
 - 書：封面圖放進 `images/books/`，然後在 `sides` 裡加一行 `{ title: '書名', author: '作者', blurb: '兩句話簡介', cover: 'images/books/檔名.jpg' }`。`author` 和 `blurb` 不填也可以，就只會顯示書名。
 - 影集 / 電影：`items` 裡加一行 `{ title: '片名', poster: '海報圖網址', link: '點了連去哪' }`。影集的海報可以用 `python3 scripts/find-posters.py` 查（改檔案裡的片名清單），電影可以用 Wikipedia 頁面上的海報圖網址。只給 `title` 不給 `poster` 也可以，會變成純文字一行。
 - My Likes：`items` 裡一格一行 `{ name: '中文', en: '英文小字', icon: '圖示名', bg: '底色' }`，圖示名要是 `covers.js` 裡 `LIKE_ICONS` 有的；想加新圖示就在那裡照樣畫一個。
-- 封面顏色：每本的 `cover` 欄位，`bg` 底色、`panel` 中間色塊、`accent` 強調色。
+- 封面：每本有 `covers` 陣列，裡面每一個物件就是一個版本，網站每次打開隨機抽一個，底下的「shuffle editions」可以手動換。每個版本：`layout`（`bottom` 書名在下 / `top` 書名在上 / `band` 圖形橫跨整本）、`bg` 底色、`ink` 文字色、`panel` 色塊、`accent` 強調色、`dark` 深色、`mark` 圖形名（要是 `covers.js` 裡 `COVER_MARKS` 有的）。想加第四個版本就多加一個物件。
 - Way Finding：`fields` 改領域，`now.lines` 改現在在做的事，`photo` 填圖片路徑就會顯示照片。
 
 改完存檔，在這個資料夾執行：

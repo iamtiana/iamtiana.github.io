@@ -1,8 +1,8 @@
 // ============================================================
-//  Tiana's Tapes — 這是唯一需要改的檔案。
+//  Tiana's Library — 這是唯一需要改的檔案。
 //  改完存檔、git push，一兩分鐘後網站就更新。
 // ============================================================
-// 每本書的 cover：bg 底色、ink 封面文字色、panel 中間色塊、paper 米白、accent 強調色、dark 深色、mark 圖形名（見 covers.js）
+// 每本書的 covers：幾個封面版本，每次隨機抽一個。bg 底色、ink 文字色、panel 色塊、paper 米白、accent 強調、dark 深色、mark 圖形名（見 covers.js）
 window.SITE = { name: "Tiana's Library" };
 window.TAPES = [
   {
@@ -10,7 +10,12 @@ window.TAPES = [
     label: 'Music',
     title: 'On Repeat',
     subtitle: 'from YouTube Music',
-    cover: { bg: '#d7603e', ink: '#f6efe3', panel: '#3f8a84', paper: '#f6efe3', accent: '#d7603e', dark: '#2b2722', mark: 'record' },
+    // covers：這本書的幾個封面版本，每次打開網站隨機抽一個。layout 可填 bottom / top / band
+    covers: [
+      { layout: 'bottom', bg: '#d7603e', ink: '#f6efe3', panel: '#3f8a84', paper: '#f6efe3', accent: '#d7603e', dark: '#2b2722', mark: 'record' },
+      { layout: 'top',    bg: '#2b3a4f', ink: '#f6efe3', panel: '#3f8a84', paper: '#f6efe3', accent: '#ecbc5a', dark: '#2b2722', mark: 'equalizer' },
+      { layout: 'band',   bg: '#ecbc5a', ink: '#2b2722', panel: '#d7603e', paper: '#f6efe3', accent: '#ecbc5a', dark: '#2b2722', mark: 'soundwave' },
+    ],
     // Spotify 歌手 ID：打開 open.spotify.com 的歌手頁，網址最後那串 22 碼就是
     artists: [
       { name: 'The Weeknd',       spotifyId: '1Xyo4u8uXC1ZmMpatF05PJ' },
@@ -29,7 +34,11 @@ window.TAPES = [
     label: 'Reading',
     title: 'Shelf',
     subtitle: 'two sides, flip to switch · tap a cover to open it',
-    cover: { bg: '#345e84', ink: '#f6efe3', panel: '#e9d8a6', paper: '#f6efe3', accent: '#d7603e', dark: '#2b2722', mark: 'shelf' },
+    covers: [
+      { layout: 'bottom', bg: '#345e84', ink: '#f6efe3', panel: '#e9d8a6', paper: '#f6efe3', accent: '#d7603e', dark: '#2b2722', mark: 'shelf' },
+      { layout: 'top',    bg: '#e9d8a6', ink: '#2b2722', panel: '#345e84', paper: '#f6efe3', accent: '#d7603e', dark: '#2b2722', mark: 'openbook' },
+      { layout: 'band',   bg: '#7a4a6e', ink: '#f6efe3', panel: '#f3b7c3', paper: '#f6efe3', accent: '#ecbc5a', dark: '#2b2722', mark: 'stack' },
+    ],
     // 封面圖放 images/books/，檔名自己取，這裡填路徑。author 和 blurb 不填也可以。
     sides: [
       { name: 'Side A · 商業・成長', books: [
@@ -83,7 +92,11 @@ window.TAPES = [
     label: 'Screen',
     title: 'Rom-com Forever',
     subtitle: 'genre: rom-com',
-    cover: { bg: '#ecbc5a', ink: '#2b2722', panel: '#2b3a4f', paper: '#f6efe3', accent: '#e8826f', dark: '#2b2722', mark: 'screen' },
+    covers: [
+      { layout: 'bottom', bg: '#ecbc5a', ink: '#2b2722', panel: '#2b3a4f', paper: '#f6efe3', accent: '#e8826f', dark: '#2b2722', mark: 'screen' },
+      { layout: 'top',    bg: '#e8826f', ink: '#2b2722', panel: '#f6efe3', paper: '#f6efe3', accent: '#d7463e', dark: '#2b2722', mark: 'clapper' },
+      { layout: 'band',   bg: '#2b3a4f', ink: '#f6efe3', panel: '#d7463e', paper: '#f6efe3', accent: '#ecbc5a', dark: '#2b2722', mark: 'popcorn' },
+    ],
     // poster：海報圖網址（影集可用 python3 scripts/find-posters.py 查）；link：點海報連去哪
     items: [
       { title: '10 Things I Hate About You', poster: 'https://upload.wikimedia.org/wikipedia/en/9/95/10_Things_I_Hate_About_You_film.jpg', link: 'https://en.wikipedia.org/wiki/10_Things_I_Hate_About_You' },
@@ -119,7 +132,11 @@ window.TAPES = [
     label: 'Way Finding',
     title: 'Way Finding',
     subtitle: 'fields I have wandered through',
-    cover: { bg: '#73927a', ink: '#f6efe3', panel: '#ecbc5a', paper: '#f6efe3', accent: '#d7603e', dark: '#2b3a4f', mark: 'path' },
+    covers: [
+      { layout: 'bottom', bg: '#73927a', ink: '#f6efe3', panel: '#ecbc5a', paper: '#f6efe3', accent: '#d7603e', dark: '#2b3a4f', mark: 'path' },
+      { layout: 'top',    bg: '#2f5d50', ink: '#f6efe3', panel: '#e9d8a6', paper: '#f6efe3', accent: '#d7603e', dark: '#2b2722', mark: 'compass' },
+      { layout: 'band',   bg: '#e9d8a6', ink: '#2b2722', panel: '#73927a', paper: '#f6efe3', accent: '#d7603e', dark: '#2b3a4f', mark: 'signpost' },
+    ],
     fields: [
       { name: '人資',        note: '工研院、金士頓人資實習；人資聚會總召' },
       { name: '心理諮商',    note: '清大教育心理與諮商學系' },
@@ -142,7 +159,11 @@ window.TAPES = [
     label: 'Likes',
     title: 'My Likes',
     subtitle: 'things that make me happy',
-    cover: { bg: '#4f86b3', ink: '#f6efe3', panel: '#f6efe3', paper: '#f6efe3', accent: '#ecbc5a', dark: '#2b3a4f', mark: 'waves' },
+    covers: [
+      { layout: 'bottom', bg: '#4f86b3', ink: '#f6efe3', panel: '#f6efe3', paper: '#f6efe3', accent: '#ecbc5a', dark: '#2b3a4f', mark: 'waves' },
+      { layout: 'top',    bg: '#a8c8e8', ink: '#2b2722', panel: '#4f86b3', paper: '#f6efe3', accent: '#e8826f', dark: '#2b3a4f', mark: 'sun' },
+      { layout: 'band',   bg: '#14213d', ink: '#f6efe3', panel: '#a8c8e8', paper: '#f6efe3', accent: '#4f86b3', dark: '#2b3a4f', mark: 'stripes' },
+    ],
     // icon 對應 covers.js 裡的 LIKE_ICONS；bg 是那一格的底色；en 是格子下面的英文小字
     items: [
       { name: '海',         en: 'the sea',     icon: 'sea',        bg: '#4f86b3' },

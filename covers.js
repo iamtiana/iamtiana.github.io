@@ -35,6 +35,79 @@ window.COVER_MARKS = {
     <circle cx="46" cy="18" r="8" fill="${c.accent}"/>
     <path d="M0 40 Q8 32 16 40 T32 40 T48 40 T64 40 V64 H0z" fill="${c.bg}"/>
     <path d="M0 50 Q8 42 16 50 T32 50 T48 50 T64 50 V64 H0z" fill="${c.dark}"/></svg>`,
+
+  // ---- alternate editions ----
+  // music: equalizer bars
+  equalizer: c => `<svg viewBox="0 0 64 64">
+    <rect width="64" height="64" fill="${c.panel}"/>
+    ${[18, 34, 26, 44, 30, 20].map((h, i) => `<rect x="${8 + i * 9}" y="${54 - h}" width="6" height="${h}" fill="${i === 3 ? c.accent : c.paper}"/>`).join('')}
+    <rect x="6" y="54" width="52" height="2" fill="${c.dark}"/></svg>`,
+  // music: sound waves from a corner
+  soundwave: c => `<svg viewBox="0 0 64 64">
+    <rect width="64" height="64" fill="${c.paper}"/>
+    <circle cx="10" cy="54" r="48" fill="${c.panel}"/>
+    <circle cx="10" cy="54" r="36" fill="${c.paper}"/>
+    <circle cx="10" cy="54" r="24" fill="${c.bg}"/>
+    <circle cx="10" cy="54" r="12" fill="${c.paper}"/>
+    <circle cx="10" cy="54" r="4" fill="${c.dark}"/></svg>`,
+  // reading: open book
+  openbook: c => `<svg viewBox="0 0 64 64">
+    <rect width="64" height="64" fill="${c.panel}"/>
+    <path d="M8 16 Q20 12 32 18 V50 Q20 44 8 48z" fill="${c.paper}"/>
+    <path d="M56 16 Q44 12 32 18 V50 Q44 44 56 48z" fill="${c.paper}"/>
+    <path d="M32 18 V50" stroke="${c.dark}" stroke-width="2"/>
+    <rect x="40" y="10" width="5" height="22" fill="${c.accent}"/>
+    <path d="M40 32 l2.5 -3 2.5 3z" fill="${c.panel}"/></svg>`,
+  // reading: a stack of books
+  stack: c => `<svg viewBox="0 0 64 64">
+    <rect width="64" height="64" fill="${c.panel}"/>
+    <rect x="14" y="44" width="38" height="8" fill="${c.paper}"/>
+    <rect x="10" y="34" width="40" height="8" fill="${c.dark}"/>
+    <rect x="16" y="24" width="36" height="8" fill="${c.accent}"/>
+    <rect x="12" y="14" width="34" height="8" fill="${c.paper}"/></svg>`,
+  // screen: clapperboard
+  clapper: c => `<svg viewBox="0 0 64 64">
+    <rect width="64" height="64" fill="${c.panel}"/>
+    <rect x="8" y="24" width="48" height="30" rx="2" fill="${c.dark}"/>
+    <path d="M8 24 l4 -12 h44 l-4 12z" fill="${c.paper}"/>
+    <path d="M14 12 l-4 12 M24 12 l-4 12 M34 12 l-4 12 M44 12 l-4 12 M54 12 l-4 12" stroke="${c.dark}" stroke-width="3"/>
+    <circle cx="32" cy="40" r="6" fill="${c.accent}"/></svg>`,
+  // screen: popcorn
+  popcorn: c => `<svg viewBox="0 0 64 64">
+    <rect width="64" height="64" fill="${c.panel}"/>
+    <path d="M14 26 h36 l-4 28 h-28z" fill="${c.paper}"/>
+    <path d="M22 26 l-1 28 M32 26 v28 M42 26 l1 28" stroke="${c.accent}" stroke-width="4"/>
+    <g fill="${c.paper}"><circle cx="20" cy="22" r="6"/><circle cx="32" cy="16" r="7"/><circle cx="44" cy="22" r="6"/><circle cx="26" cy="14" r="5"/><circle cx="38" cy="13" r="5"/></g></svg>`,
+  // way finding: compass
+  compass: c => `<svg viewBox="0 0 64 64">
+    <rect width="64" height="64" fill="${c.panel}"/>
+    <circle cx="32" cy="32" r="24" fill="${c.paper}"/>
+    <circle cx="32" cy="32" r="24" fill="none" stroke="${c.dark}" stroke-width="2"/>
+    <path d="M32 10 L38 32 L32 54 L26 32z" fill="${c.dark}"/>
+    <path d="M32 10 L38 32 L26 32z" fill="${c.accent}"/>
+    <circle cx="32" cy="32" r="3" fill="${c.paper}"/></svg>`,
+  // way finding: signpost
+  signpost: c => `<svg viewBox="0 0 64 64">
+    <rect width="64" height="64" fill="${c.paper}"/>
+    <rect x="30" y="10" width="4" height="48" fill="${c.dark}"/>
+    <path d="M14 16 h26 l5 5 -5 5 h-26z" fill="${c.panel}"/>
+    <path d="M50 30 h-26 l-5 5 5 5 h26z" fill="${c.accent}"/>
+    <path d="M18 44 h22 l5 5 -5 5 h-22z" fill="${c.bg}"/></svg>`,
+  // likes: rising sun
+  sun: c => `<svg viewBox="0 0 64 64">
+    <rect width="64" height="64" fill="${c.paper}"/>
+    ${[0, 30, 60, 90, 120, 150, 180].map(a => `<line x1="32" y1="40" x2="${(32 + 30 * Math.cos(Math.PI * a / 180)).toFixed(1)}" y2="${(40 - 30 * Math.sin(Math.PI * a / 180)).toFixed(1)}" stroke="${c.panel}" stroke-width="2.5"/>`).join('')}
+    <circle cx="32" cy="40" r="14" fill="${c.accent}"/>
+    <rect x="0" y="40" width="64" height="24" fill="${c.bg}"/>
+    <rect x="0" y="40" width="64" height="3" fill="${c.dark}"/></svg>`,
+  // likes: horizon stripes
+  stripes: c => `<svg viewBox="0 0 64 64">
+    <rect width="64" height="64" fill="${c.paper}"/>
+    <rect y="8" width="64" height="10" fill="${c.panel}"/>
+    <rect y="22" width="64" height="10" fill="${c.accent}"/>
+    <rect y="36" width="64" height="10" fill="${c.bg}"/>
+    <rect y="50" width="64" height="10" fill="${c.dark}"/>
+    <circle cx="46" cy="27" r="7" fill="${c.paper}"/></svg>`,
 };
 
 // Icons for the "My Likes" page. Keyed by the `icon` field in data.js. Drawn in the same flat style.
